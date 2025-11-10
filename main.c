@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <windows.h>
+void clearInputBuffer()
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 int main(void)
 {
     //允许输入中文
@@ -10,6 +15,7 @@ int main(void)
 restart:
     printf("请输入带单位的温度（如45C，95F，385K）：");
     scanf("%lf%c", &temp, &unit);
+    clearInputBuffer();    //清除输入内容中的换行符，排除干扰
     //定义字符代表摄氏度、华氏度、开尔文温度
     double C, F, K;
     //判定
@@ -39,5 +45,17 @@ restart:
         printf("请输入正确的温度单位！\n再试一次：\n");
         goto restart;     //前往第10行
     }
-    return 0;
+    char judge;
+    printf("还想继续转换吗？请输入Y（继续）或N（结束）：");
+    scanf("%c",&judge);
+    clearInputBuffer();
+    if (judge == 'Y')
+    {
+        goto restart;
+    }
+    if (judge == 'N')
+    {
+        system("pause");
+        return 0;
+    }
 }
