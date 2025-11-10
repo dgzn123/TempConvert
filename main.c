@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <windows.h>
-void clearInputBuffer()
+void clearInputBuffer()    //干扰清除模块
 {
     int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF);    //不断读取字符，直到遇到换行符或文件结尾
 }
 int main(void)
 {
@@ -48,7 +48,7 @@ restart:
     char judge;
     printf("还想继续转换吗？请输入Y（继续）或N（结束）：");
     scanf("%c",&judge);
-    clearInputBuffer();
+    clearInputBuffer();    //清除换行符，排除干扰
     if (judge == 'Y')
     {
         goto restart;
